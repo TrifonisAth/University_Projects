@@ -9,12 +9,12 @@
 
 ## Contents
 
-* [Microsoft Azure setup.](https://github.com/TrifonisAth/Databases/tree/main/assignment1)
-* [Tables creation and data insertion from .csv and json](https://github.com/TrifonisAth/Databases/tree/main/assignment2)
-* [12 sql queries on the database built so far.](https://github.com/TrifonisAth/Databases/tree/main/assignment3)
-* [Adding integrity constraints.](https://github.com/TrifonisAth/Databases/tree/main/assignment4)
-* [Database normalization (BCNF) and ER diagram.](https://github.com/TrifonisAth/Databases/tree/main/assignment5)
-* [Database analysis and visualization through python.](https://github.com/TrifonisAth/Databases/tree/main/project)
+* [Microsoft Azure setup.](https://github.com/TrifonisAth/University_Projects/tree/main/Databases/assignment1)
+* [Tables creation and data insertion from .csv and json](https://github.com/TrifonisAth/University_Projects/tree/main/Databases/assignment2)
+* [12 sql queries on the database built so far.](https://github.com/TrifonisAth/University_Projects/tree/main/Databases/assignment3)
+* [Adding integrity constraints.](https://github.com/TrifonisAth/University_Projects/tree/main/Databases/assignment4)
+* [Database normalization (BCNF) and ER diagram.](https://github.com/TrifonisAth/University_Projects/tree/main/Databases/assignment5)
+* [Database analysis and visualization through python.](https://github.com/TrifonisAth/University_Projects/tree/main/Databases/project)
 ## Authors
 
 - [@TrifonisAth](https://www.github.com/TrifonisAth)
