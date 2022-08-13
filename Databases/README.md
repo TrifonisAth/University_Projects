@@ -1,0 +1,22 @@
+
+# Movie Database
+
+* This repo contains a series of assignments from the course Databases that i took at AUEB Computer Science dept during my 4th semester in 2021-2022.
+* The database consists of a dataset containing info about the movies like budget, ratings, actors, crew members etc.
+
+## Dataset
+[Data](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset)
+
+## Contents
+
+* [Microsoft Azure setup.](https://github.com/TrifonisAth/Databases/tree/main/assignment1)
+* [Tables creation and data insertion from .csv and json](https://github.com/TrifonisAth/Databases/tree/main/assignment2)
+* [12 sql queries on the database built so far.](https://github.com/TrifonisAth/Databases/tree/main/assignment3)
+* [Adding integrity constraints.](https://github.com/TrifonisAth/Databases/tree/main/assignment4)
+* [Database normalization (BCNF) and ER diagram.](https://github.com/TrifonisAth/Databases/tree/main/assignment5)
+* [Database analysis and visualization through python.](https://github.com/TrifonisAth/Databases/tree/main/project)
+## Authors
+
+- [@TrifonisAth](https://www.github.com/TrifonisAth)
+- [@nikolasds](https://www.github.com/nikolasds)
+
