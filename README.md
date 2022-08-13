@@ -7,4 +7,5 @@ This repo contains the assignments and projects i have completed during my studi
 # Contents
 * [Databases](https://github.com/TrifonisAth/University_Projects/tree/main/Databases)
 * [Operating Systems](https://github.com/TrifonisAth/University_Projects/tree/main/Operating_systems)
+* [Digital Systems Design](https://github.com/TrifonisAth/University_Projects/tree/main/Digital_systems_design)
 
