@@ -1,6 +1,8 @@
 
 # Theater Ticketing System
 
+![image](https://user-images.githubusercontent.com/81590123/184472422-877f4d6f-8837-4c66-b046-f80ed2d3d158.png)
+
 * The objective of this project was to create a program where customers are making phone calls in a call center and they are waiting to get the first available line.
 
 * When a customer finds an available line he is ordering a random number of tickets in a random theater zone. Each zone can have a different amount of seats and price.
