@@ -1,0 +1,1197 @@
+|ALU16
+a[0] => alu:LOOPING:0:ALU1bit.a
+a[1] => alu:LOOPING:1:ALU1bit.a
+a[2] => alu:LOOPING:2:ALU1bit.a
+a[3] => alu:LOOPING:3:ALU1bit.a
+a[4] => alu:LOOPING:4:ALU1bit.a
+a[5] => alu:LOOPING:5:ALU1bit.a
+a[6] => alu:LOOPING:6:ALU1bit.a
+a[7] => alu:LOOPING:7:ALU1bit.a
+a[8] => alu:LOOPING:8:ALU1bit.a
+a[9] => alu:LOOPING:9:ALU1bit.a
+a[10] => alu:LOOPING:10:ALU1bit.a
+a[11] => alu:LOOPING:11:ALU1bit.a
+a[12] => alu:LOOPING:12:ALU1bit.a
+a[13] => alu:LOOPING:13:ALU1bit.a
+a[14] => alu:LOOPING:14:ALU1bit.a
+a[15] => alu:LOOPING:15:ALU1bit.a
+b[0] => alu:LOOPING:0:ALU1bit.b
+b[1] => alu:LOOPING:1:ALU1bit.b
+b[2] => alu:LOOPING:2:ALU1bit.b
+b[3] => alu:LOOPING:3:ALU1bit.b
+b[4] => alu:LOOPING:4:ALU1bit.b
+b[5] => alu:LOOPING:5:ALU1bit.b
+b[6] => alu:LOOPING:6:ALU1bit.b
+b[7] => alu:LOOPING:7:ALU1bit.b
+b[8] => alu:LOOPING:8:ALU1bit.b
+b[9] => alu:LOOPING:9:ALU1bit.b
+b[10] => alu:LOOPING:10:ALU1bit.b
+b[11] => alu:LOOPING:11:ALU1bit.b
+b[12] => alu:LOOPING:12:ALU1bit.b
+b[13] => alu:LOOPING:13:ALU1bit.b
+b[14] => alu:LOOPING:14:ALU1bit.b
+b[15] => alu:LOOPING:15:ALU1bit.b
+opcode[0] => cc:Step0.opcode[0]
+opcode[1] => cc:Step0.opcode[1]
+opcode[2] => cc:Step0.opcode[2]
+result[0] <= alu:LOOPING:0:ALU1bit.Result
+result[1] <= alu:LOOPING:1:ALU1bit.Result
+result[2] <= alu:LOOPING:2:ALU1bit.Result
+result[3] <= alu:LOOPING:3:ALU1bit.Result
+result[4] <= alu:LOOPING:4:ALU1bit.Result
+result[5] <= alu:LOOPING:5:ALU1bit.Result
+result[6] <= alu:LOOPING:6:ALU1bit.Result
+result[7] <= alu:LOOPING:7:ALU1bit.Result
+result[8] <= alu:LOOPING:8:ALU1bit.Result
+result[9] <= alu:LOOPING:9:ALU1bit.Result
+result[10] <= alu:LOOPING:10:ALU1bit.Result
+result[11] <= alu:LOOPING:11:ALU1bit.Result
+result[12] <= alu:LOOPING:12:ALU1bit.Result
+result[13] <= alu:LOOPING:13:ALU1bit.Result
+result[14] <= alu:LOOPING:14:ALU1bit.Result
+result[15] <= alu:LOOPING:15:ALU1bit.Result
+overflow <= overflow.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|cc:Step0
+opcode[0] => Mux0.IN10
+opcode[0] => Mux1.IN10
+opcode[0] => Mux3.IN10
+opcode[0] => Mux4.IN10
+opcode[1] => Mux0.IN9
+opcode[1] => Mux1.IN9
+opcode[1] => Mux2.IN5
+opcode[1] => Mux3.IN9
+opcode[1] => Mux4.IN9
+opcode[2] => Mux0.IN8
+opcode[2] => Mux1.IN8
+opcode[2] => Mux2.IN4
+opcode[2] => Mux3.IN8
+opcode[2] => Mux4.IN8
+Ainvert <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+Binvert <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+Operation[0] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+Operation[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+CarryIn <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:0:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:1:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:2:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:3:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:4:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:5:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:6:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:7:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:8:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:9:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:10:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:11:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:12:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:13:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:14:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU16|alu:\LOOPING:15:ALU1bit|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

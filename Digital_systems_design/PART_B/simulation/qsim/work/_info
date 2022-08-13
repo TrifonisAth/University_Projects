@@ -1,0 +1,96 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/thanos/Desktop/AUEB/2nd/design/HW/hw2_partb/simulation/qsim
+Ealu16
+Z1 w1654452106
+Z2 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z3 DPx4 maxv 14 maxv_atom_pack 0 22 `YXhbnPNiS:bB3zbmbF772
+Z4 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z5 DPx4 maxv 15 maxv_components 0 22 EJJMbHV<EJ`DANOSmdPih1
+Z6 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z7 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z8 8ALU16.vho
+Z9 FALU16.vho
+l0
+L35
+V3OjHkaPZ7@Dz0IeK[IE1b3
+!s100 n0n<eYI;`2=I;1>8I>>e<1
+Z10 OV;C;10.5b;63
+32
+Z11 !s110 1654452107
+!i10b 1
+Z12 !s108 1654452107.000000
+Z13 !s90 -work|work|ALU16.vho|
+Z14 !s107 ALU16.vho|
+!i113 1
+Z15 o-work work
+Z16 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+DEx4 work 5 alu16 0 22 3OjHkaPZ7@Dz0IeK[IE1b3
+l158
+L48
+V<T>4a]Ob93AnFjjfzfMoQ0
+!s100 gZh@F[ZcYB`93VQ]i]?Vl1
+R10
+32
+R11
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
+Ealu16_vhd_vec_tst
+Z17 w1654452105
+R6
+R7
+R0
+Z18 8Waveform.vwf.vht
+Z19 FWaveform.vwf.vht
+l0
+L32
+V7TYPZ5TZR]Km=mbLoR<N?0
+!s100 1^[lo<F9YzgoGYYl<mndn1
+R10
+32
+R11
+!i10b 1
+R12
+Z20 !s90 -work|work|Waveform.vwf.vht|
+Z21 !s107 Waveform.vwf.vht|
+!i113 1
+R15
+R16
+Aalu16_arch
+R6
+R7
+Z22 DEx4 work 17 alu16_vhd_vec_tst 0 22 7TYPZ5TZR]Km=mbLoR<N?0
+l51
+L34
+VSEzz]eoEmUl1UjTMASZF81
+!s100 XkZE8dY<e>8dkkf8o[BnD3
+R10
+32
+R11
+!i10b 1
+R12
+R20
+R21
+!i113 1
+R15
+R16

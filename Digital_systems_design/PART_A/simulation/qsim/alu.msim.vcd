@@ -1,0 +1,132 @@
+$comment
+	File created using the following command:
+		vcd file alu.msim.vcd -direction
+$end
+$date
+	Sun Jun 05 19:38:45 2022
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module alu_vhd_vec_tst $end
+$var wire 1 ! a $end
+$var wire 1 " AInvert $end
+$var wire 1 # b $end
+$var wire 1 $ BInvert $end
+$var wire 1 % CarryIn $end
+$var wire 1 & CarryOut $end
+$var wire 1 ' Operation [1] $end
+$var wire 1 ( Operation [0] $end
+$var wire 1 ) Result $end
+
+$scope module i1 $end
+$var wire 1 * gnd $end
+$var wire 1 + vcc $end
+$var wire 1 , unknown $end
+$var wire 1 - devoe $end
+$var wire 1 . devclrn $end
+$var wire 1 / devpor $end
+$var wire 1 0 ww_devoe $end
+$var wire 1 1 ww_devclrn $end
+$var wire 1 2 ww_devpor $end
+$var wire 1 3 ww_a $end
+$var wire 1 4 ww_b $end
+$var wire 1 5 ww_CarryIn $end
+$var wire 1 6 ww_AInvert $end
+$var wire 1 7 ww_BInvert $end
+$var wire 1 8 ww_Operation [1] $end
+$var wire 1 9 ww_Operation [0] $end
+$var wire 1 : ww_CarryOut $end
+$var wire 1 ; ww_Result $end
+$var wire 1 < \a~combout\ $end
+$var wire 1 = \b~combout\ $end
+$var wire 1 > \BInvert~combout\ $end
+$var wire 1 ? \INVERTING_B|inToInvert~0_combout\ $end
+$var wire 1 @ \CarryIn~combout\ $end
+$var wire 1 A \AInvert~combout\ $end
+$var wire 1 B \ADDING|Cout~0_combout\ $end
+$var wire 1 C \INVERTING_A|inToInvert~0_combout\ $end
+$var wire 1 D \OPER|Mux0~0_combout\ $end
+$var wire 1 E \XOR2|out1~0_combout\ $end
+$var wire 1 F \OPER|Mux0~1_combout\ $end
+$var wire 1 G \Operation~combout\ [1] $end
+$var wire 1 H \Operation~combout\ [0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+1$
+0%
+1&
+1)
+0*
+1+
+x,
+1-
+1.
+1/
+10
+11
+12
+03
+04
+05
+16
+17
+1:
+1;
+0<
+0=
+1>
+1?
+0@
+1A
+1B
+1C
+1D
+0E
+1F
+0'
+0(
+08
+09
+0G
+0H
+$end
+#40000
+1#
+14
+1=
+0?
+1E
+0B
+0D
+0F
+0:
+0&
+0;
+0)
+#80000
+0#
+1!
+04
+13
+1<
+0=
+1?
+0C
+#120000
+1#
+14
+1=
+0?
+0E
+#160000

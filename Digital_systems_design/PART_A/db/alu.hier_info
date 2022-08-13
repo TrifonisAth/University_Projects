@@ -1,0 +1,70 @@
+|alu
+a => invert_mux2to1:INVERTING_A.in1
+a => invert_mux2to1:INVERTING_A.in2
+b => invert_mux2to1:INVERTING_B.in1
+b => invert_mux2to1:INVERTING_B.in2
+CarryIn => fullAdd:ADDING.Cin
+AInvert => invert_mux2to1:INVERTING_A.s
+BInvert => invert_mux2to1:INVERTING_B.s
+Operation[0] => my_mux4to1_component:OPER.s[0]
+Operation[1] => my_mux4to1_component:OPER.s[1]
+CarryOut <= fullAdd:ADDING.Cout
+Result <= my_mux4to1_component:OPER.f
+
+
+|alu|invert_mux2to1:INVERTING_A
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|alu|invert_mux2to1:INVERTING_B
+in1 => inverted.DATAB
+in2 => inverted.DATAA
+s => inverted.OUTPUTSELECT
+inverted <= inverted.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|alu|myand2:AND2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|alu|myor2:OR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|alu|fullAdd:ADDING
+Cin => s.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+in1 => s.IN0
+in1 => Cout.IN0
+in1 => Cout.IN1
+in2 => s.IN1
+in2 => Cout.IN1
+in2 => Cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|alu|myxor2:XOR2
+in1 => out1.IN0
+in2 => out1.IN1
+out1 <= out1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|alu|my_mux4to1_component:OPER
+w0 => Mux0.IN0
+w1 => Mux0.IN1
+w2 => Mux0.IN2
+w3 => Mux0.IN3
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
