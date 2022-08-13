@@ -1,6 +1,9 @@
 
 # Movie Database
 
+![image](https://user-images.githubusercontent.com/81590123/184472669-60f5375c-790a-4a30-a58a-21653bb48aae.png)
+
+
 * This repo contains a series of assignments from the course Databases that i took at AUEB Computer Science dept during my 4th semester in 2021-2022.
 * The database consists of a dataset containing info about the movies like budget, ratings, actors, crew members etc.
 
