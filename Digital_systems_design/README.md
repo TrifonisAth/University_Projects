@@ -14,5 +14,5 @@
 
 * The project was created using Intel's software [Quartus Prime](https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/quartus-prime.html) and [VHDL](https://en.wikipedia.org/wiki/VHDL)
 
-* Part A is the starting block where an 1bit ALU is implemented.
-* Part B is the construction of a control circuit and the implementation of 16 single bit ALU's into a 16bit ALU.
+* [Part A](https://github.com/TrifonisAth/University_Projects/tree/main/Digital_systems_design/PART_A) is the starting block where an 1bit ALU is implemented.
+* [Part B](https://github.com/TrifonisAth/University_Projects/tree/main/Digital_systems_design/PART_B) is the construction of a control circuit and the implementation of 16 single bit ALU's into a 16bit ALU.
