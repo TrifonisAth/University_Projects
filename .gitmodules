@@ -1,0 +1,3 @@
+[submodule "distributed_systems_compatible"]
+	path = distributed_systems_compatible
+	url = https://github.com/TrifonisAth/distributed_systems_compatible
