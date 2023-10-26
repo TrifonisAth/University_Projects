@@ -4,3 +4,6 @@
 [submodule "aueb_cinema"]
 	path = aueb_cinema
 	url = https://github.com/TrifonisAth/aueb_cinema
+[submodule "Cpp_Aueb_Cinema"]
+	path = Cpp_Aueb_Cinema
+	url = https://github.com/TrifonisAth/aueb_cinema
