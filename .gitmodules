@@ -1,3 +1,6 @@
 [submodule "distributed_systems_compatible"]
 	path = distributed_systems_compatible
 	url = https://github.com/TrifonisAth/distributed_systems_compatible
+[submodule "aueb_cinema"]
+	path = aueb_cinema
+	url = https://github.com/TrifonisAth/aueb_cinema
